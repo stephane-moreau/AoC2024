@@ -37,9 +37,9 @@ func invalidPos(p path) int {
 		}
 		log += strconv.Itoa(cur)
 	}
-	if invalidPos != -1 {
-		fmt.Printf("invalid %s\n", log)
-	}
+	// if invalidPos != -1 {
+	// 	fmt.Printf("invalid %s\n", log)
+	// }
 	return invalidPos
 }
 

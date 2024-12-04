@@ -5,6 +5,7 @@ import (
 	"strconv"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -56,7 +57,7 @@ func computeSum(operations string, useCond bool) int {
 		}
 		if valid {
 			x, y := findNextValues(op[:closePar])
-			fmt.Printf("%s: %d %d\n", op[:closePar], x, y)
+			// fmt.Printf("%s: %d %d\n", op[:closePar], x, y)
 			s += x * y
 		}
 		if strings.Contains(op, "do()") {
@@ -77,9 +78,11 @@ func TestComputeValue(t *testing.T) {
 }
 
 func TestComputeConditionalValue(t *testing.T) {
+	now := time.Now()
 	assert.Equal(t, 48, computeSum(test_input2, true))
 
 	s := computeSum(input, true)
 	// 175615924
 	assert.Equal(t, 74361272, s)
+	fmt.Printf("%v", time.Since(now))
 }

@@ -1,7 +1,7 @@
 package day11
 
 import (
-	"strconv"
+	"math"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -16,16 +16,12 @@ func blink(stone int) []int {
 	if stone == 0 {
 		return []int{1}
 	}
-	s := strconv.Itoa(stone)
-	if len(s)%2 == 0 {
-		i1, err := strconv.Atoi(s[:len(s)/2])
-		if err != nil {
-			panic(err)
-		}
-		i2, err := strconv.Atoi(s[len(s)/2:])
-		if err != nil {
-			panic(err)
-		}
+
+	c := int(math.Log10(float64(stone))) + 1
+	if c%2 == 0 {
+		n := int(math.Pow10(c / 2))
+		i1 := stone / n
+		i2 := stone % n
 		return []int{i1, i2}
 	}
 	return []int{stone * 2024}

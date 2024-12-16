@@ -30,14 +30,6 @@ func (m Map) dump(force bool) {
 	fmt.Println(sb.String())
 }
 
-func (m Map) copy() Map {
-	res := make(Map, len(m))
-	for i, l := range m {
-		res[i] = []byte(string(l))
-	}
-	return res
-}
-
 func findRobot(garden Map) point {
 	yMax := len(garden)
 	xMax := len(garden[0])
@@ -102,12 +94,6 @@ func (p point) move(mv point) point {
 		panic("wrong move")
 	}
 	return point{p.x + mv.x, p.y + mv.y}
-}
-func (p point) back(mv point) point {
-	if mv.x == 0 && mv.y == 0 {
-		panic("wrong move")
-	}
-	return point{p.x - mv.x, p.y - mv.y}
 }
 
 var dirs = map[byte]point{
